@@ -1,11 +1,18 @@
 export const colors = {
-	primary: '#fc3c44',
-	background: '#000',
-	text: '#fff',
-	textMuted: '#9ca3af',
-	icon: '#fff',
-	maximumTrackTintColor: 'rgba(255,255,255,0.4)',
-	minimumTrackTintColor: 'rgba(255,255,255,0.6)',
+	background: 'hsl(0 0% 100%)',
+	foreground: 'hsl(240 10% 3.9%)',
+	primary: '#c2e96a',
+	primaryForeground: '#256247',
+	primaryLight: 'hsl(0 96.3% 89.4%)',
+	secondary: '#1b1b1b',
+	secondaryForeground: '#fcfcfc',
+	muted: 'hsl(240 4.8% 95.9%)',
+	mutedForeground: '240 3.8% 46.1%',
+	accent: 'hsl(240 4.8% 95.9%)',
+	accentForeground: 'hsl(240 5.9% 10%)',
+	border: 'hsl(240 5.9% 90%)',
+	input: 'hsl(240 5.9% 90%)',
+	ring: 'hsl(346.8 77.2% 49.8%)',
 }
 
 export const fontSize = {

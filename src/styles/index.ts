@@ -8,6 +8,21 @@ export const defaultStyles = StyleSheet.create({
 	},
 	text: {
 		fontSize: fontSize.base,
-		color: colors.text,
+		color: colors.foreground,
+	},
+})
+
+export const fonts = StyleSheet.create({
+	normal: {
+		fontFamily: 'Regular',
+	},
+	Bold: {
+		fontFamily: 'Bold',
+	},
+	light: {
+		fontFamily: 'Light',
+	},
+	semibold: {
+		fontFamily: 'Semibold',
 	},
 })
