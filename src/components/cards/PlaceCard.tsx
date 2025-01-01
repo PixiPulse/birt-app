@@ -38,7 +38,7 @@ export default function Card({ name, imgUrl, id }: CardProps) {
 const styles = StyleSheet.create({
 	container: {
 		width: '100%',
-		height: 150,
+		height: 180,
 		backgroundColor: colors.muted,
 		marginBottom: 20,
 		borderRadius: 10,

@@ -6,9 +6,11 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
 import { colors } from '@/constants/token'
 import { QueryClient, QueryClientProvider, focusManager } from '@tanstack/react-query'
-import { AppStateStatus, Platform } from 'react-native'
+import { AppStateStatus, Platform, View } from 'react-native'
 import { useOnlineManager } from '@/hooks/useOnlineManager'
 import { useAppState } from '@/hooks/useAppState'
+import { Image } from 'expo-image'
+import Play from '@/constants/icons/play'
 
 function onAppStateChange(status: AppStateStatus) {
 	// React Query already supports in web browser refetch on window focus by default
@@ -53,8 +55,8 @@ export default function App() {
 					<Stack.Screen
 						name="index"
 						options={{
-							headerLargeTitleShadowVisible: false,
-							headerShadowVisible: false,
+							// headerLargeTitleShadowVisible: false,
+							// headerShadowVisible: false,
 							headerTitleAlign: 'center',
 							title: 'Home',
 							headerStyle: {
@@ -64,6 +66,11 @@ export default function App() {
 							headerTitleStyle: {
 								fontFamily: 'Bold',
 							},
+							headerRight: (props) => (
+								<View style={{ width: 45, height: 45 }}>
+									<Image style={{ width: 45, height: 45 }} source={require('@/assets/icon.png')} />
+								</View>
+							),
 						}}
 					/>
 					<Stack.Screen name="[id]" />

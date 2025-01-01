@@ -1,4 +1,4 @@
-import { SectionList, StyleSheet, Text, View } from 'react-native'
+import { RefreshControl, SectionList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Container from '@/components/container/container'
 import { API_URL } from '@/contexts/AuthContext'
@@ -6,7 +6,8 @@ import { useQuery } from '@tanstack/react-query'
 import { useRefreshByUser } from '@/hooks/useRefreshByUser'
 import LoadingIndicator from '@/components/ui/LoadingIndicator'
 import Card from '@/components/cards/PlaceCard'
-import { fonts } from '@/styles'
+import { defaultStyles, fonts } from '@/styles'
+import { colors, fontSize, screenPadding } from '@/constants/token'
 
 export default function HomeScreen() {
 	const fetchPlaces = async () => {
@@ -35,22 +36,37 @@ export default function HomeScreen() {
 	if (!data.data || data.data == undefined) return <Text>No Data</Text>
 
 	return (
-		<Container>
-			<SectionList
-				sections={[
-					{
-						title: 'This Month',
-						data: data.data,
-					},
-				]}
-				keyExtractor={(item, index) => item.id + index}
-				renderItem={({ item }) => <Card {...item} />}
-				renderSectionHeader={({ section: { title } }) => (
-					<Text style={[fonts.semibold]}>{title}</Text>
-				)}
-			/>
-		</Container>
+		<SectionList
+			style={[defaultStyles.container, { paddingHorizontal: screenPadding.horizontal }]}
+			sections={[
+				{
+					title: 'This Month',
+					data: data.data,
+				},
+			]}
+			keyExtractor={(item, index) => item.id + index}
+			renderItem={({ item }) => <Card {...item} />}
+			renderSectionHeader={({ section: { title } }) => (
+				<View>
+					<Text style={[fonts.normal, styles.subtitle]}>Hot Playlist</Text>
+					<Text style={[fonts.Bold, styles.title]}>{title}</Text>
+				</View>
+			)}
+			refreshControl={<RefreshControl refreshing={isRefetchingByUser} onRefresh={refetchByUser} />}
+		/>
 	)
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+	title: {
+		fontSize: fontSize.lg,
+		color: colors.secondary,
+		textAlign: 'center',
+		marginBottom: 20,
+	},
+	subtitle: {
+		textAlign: 'center',
+		fontSize: fontSize.sm,
+    marginTop: 20
+	},
+})
