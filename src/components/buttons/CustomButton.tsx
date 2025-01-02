@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, TouchableOpacityProps, StyleSheet } from 'react-native'
 import React from 'react'
-import { Colors } from '@/constants/token'
+import { colors } from '@/constants/token'
 
 type CustomButtonProps = TouchableOpacityProps & {
     title: string
@@ -16,7 +16,7 @@ export default function CustomButton({style, title,...props}: CustomButtonProps)
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: Colors.primary,
+        backgroundColor: colors.primary,
         paddingVertical: 10,
         borderRadius: 10
     },
@@ -24,6 +24,6 @@ const styles = StyleSheet.create({
         textAlign:'center',
         fontFamily: 'Regular',
         fontSize: 18,
-        color: Colors.primaryForeground
+        color: colors.primaryForeground
     }
 })

@@ -34,12 +34,17 @@ export const AuthProvider = ({ children }: any) => {
 
 			if (token) {
 				axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+				setAuthState({
+					token: token,
+					authenticated: true,
+				})
+			} else {
+				setAuthState({
+					token: null,
+					authenticated: false,
+				})
 			}
 
-			setAuthState({
-				token: token,
-				authenticated: false,
-			})
 			setIsLoading(false)
 		}
 
@@ -60,10 +65,10 @@ export const AuthProvider = ({ children }: any) => {
 			// store token
 			await SecureStore.setItemAsync(TOKEN_KEY, result.data.accessToken)
 
-			return result
+
+			return {data: result.data}
 		} catch (error: any) {
-			console.log(JSON.stringify(error.response.data, null, 2))
-			return { error: true, message: (error as any).message }
+			return { error: true, message: (error as any).response.data }
 		}
 	}
 
@@ -82,7 +87,7 @@ export const AuthProvider = ({ children }: any) => {
 		onLogin: login,
 		onLogout: logout,
 		authState,
-		isLoading
+		isLoading,
 	}
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

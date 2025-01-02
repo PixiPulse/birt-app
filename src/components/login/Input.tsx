@@ -1,7 +1,7 @@
 import { StyleSheet, TextInput, View, TextInputProps } from "react-native";
 import React, { useState } from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { Colors } from "@/constants/token";
+import { colors } from "@/constants/token";
 
 type InputProps = TextInputProps & {
   iconName: "alternate-email" | "password" | undefined;
@@ -16,7 +16,7 @@ export default function Input({ iconName, ...props }: InputProps) {
         name={iconName}
         style={styles.icon}
         size={24}
-        color={Colors.mutedForeground}
+        color={colors.mutedForeground}
       />
       <TextInput
         style={[styles.input, isFocused ? styles.focus : styles.blur]}
@@ -43,18 +43,18 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: Colors.input,
+    borderColor: colors.input,
     borderRadius: 10,
     padding: 10,
     paddingLeft: 50,
     fontSize: 16,
-    backgroundColor: Colors.background,
+    backgroundColor: colors.background,
     fontFamily: "Regular",
   },
   focus: {
-    borderColor: Colors.ring,
+    borderColor: colors.ring,
   },
   blur: {
-    borderColor: Colors.input,
+    borderColor: colors.input,
   },
 });

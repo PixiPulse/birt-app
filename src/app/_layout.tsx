@@ -12,6 +12,7 @@ import { useAppState } from '@/hooks/useAppState'
 import { Image } from 'expo-image'
 import Play from '@/constants/icons/play'
 import { AuthProvider } from '@/contexts/AuthContext'
+import Logo from '@/components/logo/Logo'
 
 function onAppStateChange(status: AppStateStatus) {
 	// React Query already supports in web browser refetch on window focus by default
@@ -67,18 +68,24 @@ export default function App() {
 								headerTitleStyle: {
 									fontFamily: 'Bold',
 								},
-								headerTitle: (props) => (
-									<View style={styles.logo}>
-										<Image
-											style={{ width: 45, height: 45 }}
-											source={require('@/assets/icon.png')}
-										/>
-										<Text style={{ fontFamily: 'Bold', fontSize: fontSize.base }}>BIRT</Text>
-									</View>
-								),
+								headerTitle: (props) => <Logo />,
 							}}
 						/>
 						<Stack.Screen name="[id]" />
+						<Stack.Screen
+							name="[id]/login"
+							options={{
+								title: 'Login',
+								headerTitleAlign: 'center',
+								headerStyle: {
+									backgroundColor: colors.background,
+								},
+								headerTintColor: colors.foreground,
+								headerTitleStyle: {
+									fontFamily: 'Bold',
+								},
+							}}
+						/>
 					</Stack>
 				</AuthProvider>
 			</QueryClientProvider>
