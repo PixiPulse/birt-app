@@ -1,8 +1,8 @@
 export const colors = {
 	background: 'hsl(0 0% 100%)',
 	foreground: 'hsl(240 10% 3.9%)',
-	primary: '#c2e96a',
-	primaryForeground: '#256247',
+	primary: '#3d3bbf',
+	primaryForeground: '#f8fafc',
 	primaryLight: 'hsl(0 96.3% 89.4%)',
 	secondary: '#1b1b1b',
 	secondaryForeground: '#fcfcfc',

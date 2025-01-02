@@ -1,6 +1,5 @@
 import { RefreshControl, SectionList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Container from '@/components/container/container'
 import { API_URL } from '@/contexts/AuthContext'
 import { useQuery } from '@tanstack/react-query'
 import { useRefreshByUser } from '@/hooks/useRefreshByUser'

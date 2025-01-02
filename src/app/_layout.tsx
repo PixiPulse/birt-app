@@ -4,13 +4,14 @@ import { StatusBar } from 'expo-status-bar'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
-import { colors } from '@/constants/token'
+import { colors, fontSize } from '@/constants/token'
 import { QueryClient, QueryClientProvider, focusManager } from '@tanstack/react-query'
-import { AppStateStatus, Platform, View } from 'react-native'
+import { AppStateStatus, Platform, StyleSheet, Text, View } from 'react-native'
 import { useOnlineManager } from '@/hooks/useOnlineManager'
 import { useAppState } from '@/hooks/useAppState'
 import { Image } from 'expo-image'
 import Play from '@/constants/icons/play'
+import { AuthProvider } from '@/contexts/AuthContext'
 
 function onAppStateChange(status: AppStateStatus) {
 	// React Query already supports in web browser refetch on window focus by default
@@ -51,32 +52,48 @@ export default function App() {
 	return (
 		<SafeAreaProvider>
 			<QueryClientProvider client={queryClient}>
-				<Stack>
-					<Stack.Screen
-						name="index"
-						options={{
-							// headerLargeTitleShadowVisible: false,
-							// headerShadowVisible: false,
-							headerTitleAlign: 'center',
-							title: 'Home',
-							headerStyle: {
-								backgroundColor: colors.background,
-							},
-							headerTintColor: colors.foreground,
-							headerTitleStyle: {
-								fontFamily: 'Bold',
-							},
-							headerRight: (props) => (
-								<View style={{ width: 45, height: 45 }}>
-									<Image style={{ width: 45, height: 45 }} source={require('@/assets/icon.png')} />
-								</View>
-							),
-						}}
-					/>
-					<Stack.Screen name="[id]" />
-				</Stack>
+				<AuthProvider>
+					<Stack>
+						<Stack.Screen
+							name="index"
+							options={{
+								// headerLargeTitleShadowVisible: false,
+								// headerShadowVisible: false,
+								headerTitleAlign: 'center',
+								headerStyle: {
+									backgroundColor: colors.background,
+								},
+								headerTintColor: colors.foreground,
+								headerTitleStyle: {
+									fontFamily: 'Bold',
+								},
+								headerTitle: (props) => (
+									<View style={styles.logo}>
+										<Image
+											style={{ width: 45, height: 45 }}
+											source={require('@/assets/icon.png')}
+										/>
+										<Text style={{ fontFamily: 'Bold', fontSize: fontSize.base }}>BIRT</Text>
+									</View>
+								),
+							}}
+						/>
+						<Stack.Screen name="[id]" />
+					</Stack>
+				</AuthProvider>
 			</QueryClientProvider>
 			<StatusBar style="auto" />
 		</SafeAreaProvider>
 	)
 }
+
+const styles = StyleSheet.create({
+	logo: {
+		width: 45,
+		height: 45,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+		gap: 5,
+	},
+})

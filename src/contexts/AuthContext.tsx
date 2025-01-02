@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }: any) => {
 
 			setAuthState({
 				token: token,
-				authenticated: true,
+				authenticated: false,
 			})
 			setIsLoading(false)
 		}
