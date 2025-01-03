@@ -57,7 +57,7 @@ export default function CustomerScreen() {
 				sections={[
 					{
 						title: title,
-						data: [...data.data, ...data.data, ...data.data, ...data.data, ...data.data],
+						data: [...data.data],
 					},
 				]}
 				keyExtractor={(item, index) => item.id + index}
