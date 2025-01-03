@@ -21,6 +21,7 @@ import { fonts } from '@/styles'
 import { useRefreshByUser } from '@/hooks/useRefreshByUser'
 import Card from '@/components/cards/LanguageCard'
 import Audio from '@/constants/icons/audio'
+import FloatingPlayer from '@/components/player/FloatingPlayer'
 
 export default function CustomerScreen() {
 	const { id } = useLocalSearchParams()
@@ -78,6 +79,8 @@ export default function CustomerScreen() {
 				}
 				style={{ paddingHorizontal: screenPadding.horizontal, flex: 1 }}
 			/>
+
+			<FloatingPlayer />
 		</View>
 	)
 }

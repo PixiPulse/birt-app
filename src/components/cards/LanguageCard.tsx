@@ -9,11 +9,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import Play from '@/constants/icons/play'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import * as FileSystem from "expo-file-system";
+import { usePlayerContext } from '@/contexts/PlayerContext'
 
 
 export default function Card({ data }: { data: any }) {
 	const [downloadedUri, setdownloadedUri] = useState('')
-	// const { setCurrentTrack } = usePlayerContext()
+	const { setCurrentTrack } = usePlayerContext()
 	const { handleDownloadFile, downloadProgress, uri } = useDownloadFile()
 
 	const getData = async () => {
@@ -49,7 +50,7 @@ export default function Card({ data }: { data: any }) {
 				if (downloadedUri) {
 					let item = { ...data, uri: '' }
 					item.uri = downloadedUri
-					// setCurrentTrack(data)
+					setCurrentTrack(item)
 				} else {
 					if (downloadProgress > 0) return
 					handleDownloadFile({

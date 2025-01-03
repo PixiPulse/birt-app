@@ -4,15 +4,14 @@ import { StatusBar } from 'expo-status-bar'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
-import { colors, fontSize } from '@/constants/token'
+import { colors } from '@/constants/token'
 import { QueryClient, QueryClientProvider, focusManager } from '@tanstack/react-query'
 import { AppStateStatus, Platform, StyleSheet, Text, View } from 'react-native'
 import { useOnlineManager } from '@/hooks/useOnlineManager'
 import { useAppState } from '@/hooks/useAppState'
-import { Image } from 'expo-image'
-import Play from '@/constants/icons/play'
 import { AuthProvider } from '@/contexts/AuthContext'
 import Logo from '@/components/logo/Logo'
+import { PlayerProvider } from '@/contexts/PlayerContext'
 
 function onAppStateChange(status: AppStateStatus) {
 	// React Query already supports in web browser refetch on window focus by default
@@ -54,48 +53,39 @@ export default function App() {
 		<SafeAreaProvider>
 			<QueryClientProvider client={queryClient}>
 				<AuthProvider>
-					<Stack
-						screenOptions={{
-							headerLargeTitleShadowVisible: false,
-							headerShadowVisible: false,
-							headerTitleAlign: 'center',
-							headerStyle: {
-								backgroundColor: colors.background,
-							},
-							headerTintColor: colors.foreground,
-							headerTitleStyle: {
-								fontFamily: 'Bold',
-							},
-						}}
-					>
-						<Stack.Screen
-							name="index"
-							options={{
-								headerTitle: (props) => <Logo />,
+					<PlayerProvider>
+						<Stack
+							screenOptions={{
+								headerLargeTitleShadowVisible: false,
+								headerShadowVisible: false,
+								headerTitleAlign: 'center',
+								headerStyle: {
+									backgroundColor: colors.background,
+								},
+								headerTintColor: colors.foreground,
+								headerTitleStyle: {
+									fontFamily: 'Bold',
+								},
 							}}
-						/>
-						<Stack.Screen name="[id]/index" options={{title: "Playlist"}} />
-						<Stack.Screen
-							name="[id]/login"
-							options={{
-								title: 'Login',
-							}}
-						/>
-					</Stack>
+						>
+							<Stack.Screen
+								name="index"
+								options={{
+									headerTitle: (props) => <Logo />,
+								}}
+							/>
+							<Stack.Screen name="[id]/index" options={{ title: 'Playlist' }} />
+							<Stack.Screen
+								name="[id]/login"
+								options={{
+									title: 'Login',
+								}}
+							/>
+						</Stack>
+					</PlayerProvider>
 				</AuthProvider>
 			</QueryClientProvider>
 			<StatusBar style="auto" />
 		</SafeAreaProvider>
 	)
 }
-
-const styles = StyleSheet.create({
-	logo: {
-		width: 45,
-		height: 45,
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center',
-		gap: 5,
-	},
-})
