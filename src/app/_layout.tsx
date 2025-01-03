@@ -74,7 +74,7 @@ export default function App() {
 								headerTitle: (props) => <Logo />,
 							}}
 						/>
-						<Stack.Screen name="[id]/index" />
+						<Stack.Screen name="[id]/index" options={{title: "Playlist"}} />
 						<Stack.Screen
 							name="[id]/login"
 							options={{
