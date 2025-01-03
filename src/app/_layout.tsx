@@ -54,36 +54,31 @@ export default function App() {
 		<SafeAreaProvider>
 			<QueryClientProvider client={queryClient}>
 				<AuthProvider>
-					<Stack>
+					<Stack
+						screenOptions={{
+							headerLargeTitleShadowVisible: false,
+							headerShadowVisible: false,
+							headerTitleAlign: 'center',
+							headerStyle: {
+								backgroundColor: colors.background,
+							},
+							headerTintColor: colors.foreground,
+							headerTitleStyle: {
+								fontFamily: 'Bold',
+							},
+						}}
+					>
 						<Stack.Screen
 							name="index"
 							options={{
-								// headerLargeTitleShadowVisible: false,
-								// headerShadowVisible: false,
-								headerTitleAlign: 'center',
-								headerStyle: {
-									backgroundColor: colors.background,
-								},
-								headerTintColor: colors.foreground,
-								headerTitleStyle: {
-									fontFamily: 'Bold',
-								},
 								headerTitle: (props) => <Logo />,
 							}}
 						/>
-						<Stack.Screen name="[id]" />
+						<Stack.Screen name="[id]/index" />
 						<Stack.Screen
 							name="[id]/login"
 							options={{
 								title: 'Login',
-								headerTitleAlign: 'center',
-								headerStyle: {
-									backgroundColor: colors.background,
-								},
-								headerTintColor: colors.foreground,
-								headerTitleStyle: {
-									fontFamily: 'Bold',
-								},
 							}}
 						/>
 					</Stack>

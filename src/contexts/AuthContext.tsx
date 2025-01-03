@@ -49,6 +49,7 @@ export const AuthProvider = ({ children }: any) => {
 		}
 
 		loadToken()
+		console.log(authState)
 	}, [])
 
 	const login = async (username: string, password: string) => {
