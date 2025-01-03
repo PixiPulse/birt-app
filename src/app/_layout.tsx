@@ -6,7 +6,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
 import { colors } from '@/constants/token'
 import { QueryClient, QueryClientProvider, focusManager } from '@tanstack/react-query'
-import { AppStateStatus, Platform, StyleSheet, Text, View } from 'react-native'
+import { AppStateStatus, ImageBackground, Platform, StyleSheet, Text, View } from 'react-native'
 import { useOnlineManager } from '@/hooks/useOnlineManager'
 import { useAppState } from '@/hooks/useAppState'
 import { AuthProvider } from '@/contexts/AuthContext'
@@ -71,7 +71,7 @@ export default function App() {
 							<Stack.Screen
 								name="index"
 								options={{
-									headerTitle: (props) => <Logo />,
+									headerTitle: () => <Logo />,
 								}}
 							/>
 							<Stack.Screen name="[id]/index" options={{ title: 'Playlist' }} />
@@ -81,6 +81,7 @@ export default function App() {
 									title: 'Login',
 								}}
 							/>
+							<Stack.Screen name="modal" options={{ headerShown: false, presentation: 'modal' }} />
 						</Stack>
 					</PlayerProvider>
 				</AuthProvider>

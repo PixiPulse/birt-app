@@ -22,10 +22,12 @@ import { useRefreshByUser } from '@/hooks/useRefreshByUser'
 import Card from '@/components/cards/LanguageCard'
 import Audio from '@/constants/icons/audio'
 import FloatingPlayer from '@/components/player/FloatingPlayer'
+import { usePlayerContext } from '@/contexts/PlayerContext'
 
 export default function CustomerScreen() {
 	const { id } = useLocalSearchParams()
-	const { isLoading, authState, onLogout } = useAuth()
+	const { isLoading, authState } = useAuth()
+	const { currentTrack } = usePlayerContext()
 
 	const fetchLanguages = async () => {
 		return await axios.post(`${API_URL}/api/v1/place/${id}`, {
@@ -80,7 +82,7 @@ export default function CustomerScreen() {
 				style={{ paddingHorizontal: screenPadding.horizontal, flex: 1 }}
 			/>
 
-			<FloatingPlayer />
+			{currentTrack && <FloatingPlayer />}
 		</View>
 	)
 }
@@ -90,6 +92,6 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		flexDirection: 'row',
 		alignItems: 'center',
-		gap: 10
+		gap: 10,
 	},
 })

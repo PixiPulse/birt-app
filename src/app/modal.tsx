@@ -1,16 +1,17 @@
-import { Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Platform, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import Entypo from '@expo/vector-icons/Entypo'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { Redirect, router } from 'expo-router'
 import Slider from '@react-native-community/slider'
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import { StatusBar } from 'expo-status-bar'
 import { Image } from 'expo-image'
 import { usePlayerContext } from '@/contexts/PlayerContext'
 import { colors } from '@/constants/token'
 import { fonts } from '@/styles'
+import Pause from '@/constants/icons/pause'
+import Play from '@/constants/icons/play'
 
 export default function Modal() {
 	const {
@@ -33,11 +34,16 @@ export default function Modal() {
 	if (currentTrack) {
 		return (
 			<SafeAreaView style={styles.container}>
-				<LinearGradient
+				{/* <LinearGradient
 					// Background Linear Gradient
 					colors={[colors.primary, colors.foreground]}
 					style={styles.background}
-				/>
+				/> */}
+				<ImageBackground
+					
+					source={require('@/assets/bg-login.jpg')}
+					style={styles.background}
+				></ImageBackground>
 				{/* top buttons */}
 				<View style={styles.topButtonsContainer}>
 					<TouchableOpacity
@@ -95,7 +101,7 @@ export default function Modal() {
 						onValueChange={(value) => {
 							handleSliderValue(value)
 						}}
-						maximumTrackTintColor={colors.primaryForeground}
+						maximumTrackTintColor={colors.background}
 						minimumTrackTintColor={colors.primary}
 						thumbTintColor={colors.primary}
 					/>
@@ -104,10 +110,14 @@ export default function Modal() {
 				{/* buttons */}
 				<View style={styles.playerButtonContainer}>
 					<TouchableOpacity
-						style={{ backgroundColor: colors.primaryForeground }}
+						style={{ backgroundColor: colors.primaryForeground, padding: 10, borderRadius: 100 }}
 						onPress={handlePlayPause}
 					>
-						<FontAwesome5 name={isPlaying ? 'pause' : 'play'} size={24} color="black" />
+						{isPlaying ? (
+							<Pause fill={colors.primary} size="40" />
+						) : (
+							<Play fill={colors.primary} size="40" />
+						)}
 					</TouchableOpacity>
 				</View>
 				<StatusBar style="auto" />
@@ -121,7 +131,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		padding: 20,
-		backgroundColor: colors.foreground,
+		backgroundColor: colors.primary,
 		justifyContent: 'space-between',
 	},
 
@@ -130,7 +140,8 @@ const styles = StyleSheet.create({
 		left: 0,
 		right: 0,
 		top: 0,
-		height: '85%',
+		height: '120%',
+		opacity: 0.15
 	},
 	topButtonsContainer: {
 		flexDirection: 'row',
@@ -144,6 +155,7 @@ const styles = StyleSheet.create({
 		width: '85%',
 		aspectRatio: 1,
 		borderRadius: 20,
+		elevation:10
 	},
 	descriptionContainer: {},
 	title: {

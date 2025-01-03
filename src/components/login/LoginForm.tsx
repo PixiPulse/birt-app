@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import CustomButton from '../buttons/CustomButton'
 import { Link, router, useLocalSearchParams } from 'expo-router'
-import { API_URL, useAuth } from '@/contexts/AuthContext'
+import { useAuth } from '@/contexts/AuthContext'
 import Input from './Input'
 import { fonts } from '@/styles'
 import { colors, fontSize, screenPadding } from '@/constants/token'
@@ -21,16 +21,16 @@ export default function LoginForm() {
 	const handleSubmit = async () => {
 		setLoading(true)
 		const data = await onLogin!(email, password)
-        setLoading(false)
-        if(data.data) {
-            router.replace(`/${id}`)
-        }
+		setLoading(false)
+		if (data.data) {
+			router.replace(`/${id}`)
+		}
 		if (data?.message?.errors) {
 			setErrors(data.message.errors)
 			setError('')
 		} else if (data?.message?.error) {
 			setError(data.message.error || '')
-            setErrors(null)
+			setErrors(null)
 		}
 	}
 
@@ -84,7 +84,14 @@ export default function LoginForm() {
 			</View>
 
 			<View style={{ paddingHorizontal: screenPadding.horizontal, paddingTop: 40 }}>
-				<Text style={{ textAlign: 'center', fontFamily: 'Regular', fontSize: fontSize.xs }}>
+				<Text
+					style={{
+						textAlign: 'center',
+						fontFamily: 'Regular',
+						fontSize: fontSize.xs,
+						color: colors.foreground,
+					}}
+				>
 					By signin, you agree to our{' '}
 					<Link style={styles.link} href={'/'}>
 						Term of service

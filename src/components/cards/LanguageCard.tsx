@@ -8,9 +8,8 @@ import { useDownloadFile } from '@/hooks/useDownloadFile'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import Play from '@/constants/icons/play'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
-import * as FileSystem from "expo-file-system";
+import * as FileSystem from 'expo-file-system'
 import { usePlayerContext } from '@/contexts/PlayerContext'
-
 
 export default function Card({ data }: { data: any }) {
 	const [downloadedUri, setdownloadedUri] = useState('')
@@ -19,9 +18,9 @@ export default function Card({ data }: { data: any }) {
 
 	const getData = async () => {
 		const jsonValue = await AsyncStorage.getItem(`${data.id}`)
-        const isDownloaded = await FileSystem.getInfoAsync(jsonValue || '')
-        console.log(isDownloaded.exists)
-        console.log(isDownloaded.isDirectory)
+		const isDownloaded = await FileSystem.getInfoAsync(jsonValue || '')
+		console.log(isDownloaded.exists)
+		console.log(isDownloaded.isDirectory)
 		return isDownloaded.exists ? setdownloadedUri(jsonValue || '') : setdownloadedUri('')
 	}
 
@@ -44,7 +43,7 @@ export default function Card({ data }: { data: any }) {
 	return (
 		<TouchableOpacity
 			activeOpacity={0.7}
-			disabled={downloadProgress > 0 && downloadProgress !== 100}
+			disabled={downloadProgress > 0 && downloadProgress < 100}
 			style={styles.container}
 			onPress={() => {
 				if (downloadedUri) {
@@ -70,20 +69,22 @@ export default function Card({ data }: { data: any }) {
 			<View>
 				{downloadedUri ? (
 					<View style={styles.button}>
-						<Play fill={colors.primary} size='20' />
+						<Play fill={colors.primary} size="20" />
 					</View>
 				) : downloadProgress == 0 ? (
 					<View style={styles.button}>
-						<Download fill={colors.primary} size='20' />
+						<Download fill={colors.primary} size="20" />
 					</View>
 				) : (
-					<AnimatedCircularProgress
-						size={20}
-						width={2}
-						fill={downloadProgress * 100}
-						tintColor={colors.primary}
-						backgroundColor={colors.muted}
-					/>
+					<View style={styles.button}>
+						<AnimatedCircularProgress
+							size={20}
+							width={2}
+							fill={downloadProgress * 100}
+							tintColor={colors.primary}
+							backgroundColor={colors.background}
+						/>
+					</View>
 				)}
 			</View>
 		</TouchableOpacity>

@@ -4,9 +4,12 @@ import { colors, fontSize } from '@/constants/token'
 import ErrorBlock from '@/constants/icons/error-block'
 import { useAuth } from '@/contexts/AuthContext'
 import { fonts } from '@/styles'
+import { useDownloadFile } from '@/hooks/useDownloadFile'
 
 export default function ErrorScreen({ message }: { message: string }) {
 	const { onLogout } = useAuth()
+	const { handleDeleteFiles } = useDownloadFile();
+	
 
 	return (
 		<View style={styles.contaner}>
@@ -25,6 +28,7 @@ export default function ErrorScreen({ message }: { message: string }) {
 					style={styles.button}
 					onPress={async () => {
 						await onLogout!()
+						await handleDeleteFiles()
 					}}
 				>
 					<Text

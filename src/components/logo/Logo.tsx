@@ -6,7 +6,7 @@ import { fontSize } from '@/constants/token'
 export default function Logo() {
 	return (
 		<View style={styles.logo}>
-			<Image style={{ width: 45, height: 45 }} source={require('@/assets/icon.png')} />
+			<Image style={{ width: 45, height: 45, overflow: 'hidden', borderRadius: 100 }} source={require('@/assets/icon.png')} />
 			<Text style={{ fontFamily: 'Bold', fontSize: fontSize.base }}>BIRT</Text>
 		</View>
 	)

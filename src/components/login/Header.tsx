@@ -10,7 +10,7 @@ export default function Header() {
 
 			<View style={styles.textContainer}>
 				<Text style={styles.title}>Welcome to BIRT</Text>
-				<Text style={styles.slogan}>Login bellow to get your tour guide</Text>
+				<Text style={styles.slogan}>Login below to get your audio guide</Text>
 			</View>
 		</View>
 	)
@@ -29,9 +29,11 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		fontSize: fontSize.lg,
 		fontFamily: 'Bold',
+		color: colors.foreground
 	},
 	slogan: {
 		textAlign: 'center',
-		color: colors.accentForeground,
+		color: colors.foreground,
+		fontFamily: 'Regular'
 	},
 })
