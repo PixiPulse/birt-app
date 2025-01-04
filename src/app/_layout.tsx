@@ -83,6 +83,7 @@ export default function App() {
 								}}
 							/>
 							<Stack.Screen name="modal" options={{ headerShown: false, presentation: 'modal' }} />
+							<Stack.Screen name='user' options={{title: 'Profile'}} />
 						</Stack>
 					</PlayerProvider>
 				</AuthProvider>

@@ -5,11 +5,12 @@ import ErrorBlock from '@/constants/icons/error-block'
 import { useAuth } from '@/contexts/AuthContext'
 import { fonts } from '@/styles'
 import { useDownloadFile } from '@/hooks/useDownloadFile'
+import { usePlayerContext } from '@/contexts/PlayerContext'
 
 export default function ErrorScreen({ message }: { message: string }) {
 	const { onLogout } = useAuth()
-	const { handleDeleteFiles } = useDownloadFile();
-	
+	const { handleDeleteFiles } = useDownloadFile()
+	const { handleCancel } = usePlayerContext()
 
 	return (
 		<View style={styles.contaner}>
@@ -29,6 +30,7 @@ export default function ErrorScreen({ message }: { message: string }) {
 					onPress={async () => {
 						await onLogout!()
 						await handleDeleteFiles()
+						await handleCancel()
 					}}
 				>
 					<Text

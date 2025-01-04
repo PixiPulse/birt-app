@@ -1,5 +1,5 @@
-import { View, Text, SectionList, StyleSheet, RefreshControl } from 'react-native'
-import React from 'react'
+import { View, Text, SectionList, StyleSheet, RefreshControl, TouchableOpacity } from 'react-native'
+import React, { useEffect } from 'react'
 import { colors, fontSize, screenPadding } from '@/constants/token'
 import ErrorScreen from './ErrorScreen'
 import EmptyScreen from './EmptyScreen'
@@ -14,12 +14,25 @@ import Header from './Header'
 import Audio from '@/constants/icons/audio'
 import { fonts } from '@/styles'
 import FloatingPlayer from '../player/FloatingPlayer'
-import { useLocalSearchParams } from 'expo-router'
+import { router, useLocalSearchParams, useNavigation } from 'expo-router'
+import { Image } from 'expo-image'
 
 export default function PlaylistScreen() {
 	const { currentTrack } = usePlayerContext()
 	const { id } = useLocalSearchParams()
 	const { authState } = useAuth()
+
+	const navigation = useNavigation()
+
+	useEffect(() => {
+		navigation.setOptions({
+			headerRight: () => (
+				<TouchableOpacity activeOpacity={0.7} onPress={() => router.push('/user')}>
+					<Image source={require('@/assets/icon.png')} style={{ width: 40, height: 40 }} />
+				</TouchableOpacity>
+			),
+		})
+	}, [])
 
 	const fetchLanguages = async () => {
 		return await axios.post(`${API_URL}/api/v1/place/${id}`, {
