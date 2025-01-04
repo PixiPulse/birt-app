@@ -79,6 +79,7 @@ export default function App() {
 								name="[id]/login"
 								options={{
 									title: 'Login',
+									headerShown: false
 								}}
 							/>
 							<Stack.Screen name="modal" options={{ headerShown: false, presentation: 'modal' }} />

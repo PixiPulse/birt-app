@@ -89,7 +89,7 @@ export default function LoginForm() {
 						textAlign: 'center',
 						fontFamily: 'Regular',
 						fontSize: fontSize.xs,
-						color: colors.foreground,
+						color: colors.background,
 					}}
 				>
 					By signin, you agree to our{' '}
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
 	},
 
 	link: {
-		color: colors.primary,
+		color: colors.primaryLight,
 		textDecorationLine: 'underline',
 	},
 	errorBox: {

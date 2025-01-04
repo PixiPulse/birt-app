@@ -6,7 +6,7 @@ import { colors, fontSize } from '@/constants/token'
 export default function Header() {
 	return (
 		<View style={styles.container}>
-			<Logo />
+			<Logo textColor={colors.background} />
 
 			<View style={styles.textContainer}>
 				<Text style={styles.title}>Welcome to BIRT</Text>
@@ -29,11 +29,11 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		fontSize: fontSize.lg,
 		fontFamily: 'Bold',
-		color: colors.foreground
+		color: colors.background
 	},
 	slogan: {
 		textAlign: 'center',
-		color: colors.foreground,
+		color: colors.background,
 		fontFamily: 'Regular'
 	},
 })

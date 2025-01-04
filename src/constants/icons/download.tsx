@@ -5,8 +5,8 @@ import { colors } from '../token'
 export default function Download({ fill, size = '24' }: { fill?: string; size?: string }) {
 	return (
 		<Svg.Svg
-			width="24"
-			height="24"
+			width={size}
+			height={size}
 			viewBox="0 0 24 24"
 			fill="none"
 			data-src="https://cdn.hugeicons.com/icons/download-04-solid-sharp.svg"
