@@ -19,8 +19,6 @@ export default function Card({ data }: { data: any }) {
 	const getData = async () => {
 		const jsonValue = await AsyncStorage.getItem(`${data.id}`)
 		const isDownloaded = await FileSystem.getInfoAsync(jsonValue || '')
-		console.log(isDownloaded.exists)
-		console.log(isDownloaded.isDirectory)
 		return isDownloaded.exists ? setdownloadedUri(jsonValue || '') : setdownloadedUri('')
 	}
 
@@ -43,7 +41,7 @@ export default function Card({ data }: { data: any }) {
 	return (
 		<TouchableOpacity
 			activeOpacity={0.7}
-			disabled={downloadProgress > 0 && downloadProgress < 100}
+			disabled={downloadProgress > 0 && downloadProgress < 1}
 			style={styles.container}
 			onPress={() => {
 				if (downloadedUri) {

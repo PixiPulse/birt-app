@@ -21,18 +21,7 @@ export default function PlaylistScreen() {
 	const { currentTrack } = usePlayerContext()
 	const { id } = useLocalSearchParams()
 	const { authState } = useAuth()
-
-	const navigation = useNavigation()
-
-	useEffect(() => {
-		navigation.setOptions({
-			headerRight: () => (
-				<TouchableOpacity activeOpacity={0.7} onPress={() => router.push('/user')}>
-					<Image source={require('@/assets/icon.png')} style={{ width: 40, height: 40 }} />
-				</TouchableOpacity>
-			),
-		})
-	}, [])
+	
 
 	const fetchLanguages = async () => {
 		return await axios.post(`${API_URL}/api/v1/place/${id}`, {

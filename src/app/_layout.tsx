@@ -1,17 +1,26 @@
 import { useFonts } from 'expo-font'
-import { Stack } from 'expo-router'
+import { router, Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
 import { colors } from '@/constants/token'
 import { QueryClient, QueryClientProvider, focusManager } from '@tanstack/react-query'
-import { AppStateStatus, ImageBackground, Platform, StyleSheet, Text, View } from 'react-native'
+import {
+	AppStateStatus,
+	ImageBackground,
+	Platform,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native'
 import { useOnlineManager } from '@/hooks/useOnlineManager'
 import { useAppState } from '@/hooks/useAppState'
 import { AuthProvider } from '@/contexts/AuthContext'
 import Logo from '@/components/logo/Logo'
 import { PlayerProvider } from '@/contexts/PlayerContext'
+import { Image } from 'expo-image'
 
 function onAppStateChange(status: AppStateStatus) {
 	// React Query already supports in web browser refetch on window focus by default
@@ -74,16 +83,34 @@ export default function App() {
 									headerTitle: () => <Logo />,
 								}}
 							/>
-							<Stack.Screen name="[id]/index" options={{ title: 'Playlist' }} />
+							<Stack.Screen
+								name="[id]/index"
+								options={{
+									title: 'Playlist',
+									headerRight: () => (
+										<TouchableOpacity activeOpacity={0.7} onPress={() => router.push('/user')}>
+											<Image
+												source={require('@/assets/icon.png')}
+												style={{ width: 50, height: 50 }}
+											/>
+										</TouchableOpacity>
+									),
+								}}
+							/>
 							<Stack.Screen
 								name="[id]/login"
 								options={{
 									title: 'Login',
-									headerShown: false
+									headerShown: false,
 								}}
 							/>
 							<Stack.Screen name="modal" options={{ headerShown: false, presentation: 'modal' }} />
-							<Stack.Screen name='user' options={{title: 'Profile'}} />
+							<Stack.Screen
+								name="user"
+								options={{
+									title: 'Profile',
+								}}
+							/>
 						</Stack>
 					</PlayerProvider>
 				</AuthProvider>
