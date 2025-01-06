@@ -21,7 +21,6 @@ export default function PlaylistScreen() {
 	const { currentTrack } = usePlayerContext()
 	const { id } = useLocalSearchParams()
 	const { authState } = useAuth()
-	
 
 	const fetchLanguages = async () => {
 		return await axios.post(`${API_URL}/api/v1/place/${id}`, {
@@ -40,12 +39,13 @@ export default function PlaylistScreen() {
 	if (isPending) return <LoadingIndicator />
 	if (isError) return <ErrorScreen message={(error as any)?.response?.data?.error} />
 
-	if (!data) return <EmptyScreen />
+	if (!data || data.data.length === 0) return <EmptyScreen />
 
 	const title = data?.data[0]?.place?.name
 
 	return (
 		<View style={{ flex: 1, backgroundColor: colors.background }}>
+			<Text>{JSON.stringify(data)}</Text>
 			<SectionList
 				sections={[
 					{
