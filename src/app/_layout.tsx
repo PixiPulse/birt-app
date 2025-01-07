@@ -1,5 +1,5 @@
 import { useFonts } from 'expo-font'
-import { router, Stack } from 'expo-router'
+import { Link, router, Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import * as SplashScreen from 'expo-splash-screen'
@@ -80,7 +80,11 @@ export default function App() {
 							<Stack.Screen
 								name="index"
 								options={{
-									headerTitle: () => <Logo />,
+									headerTitle: () => (
+										<Link href={'https://www.bestinrometours.com/'}>
+											<Logo />
+										</Link>
+									),
 								}}
 							/>
 							<Stack.Screen
@@ -88,7 +92,7 @@ export default function App() {
 								options={{
 									title: 'Playlist',
 									headerRight: () => (
-										<TouchableOpacity activeOpacity={0.7} onPress={() => router.push('/user')}>
+										<TouchableOpacity activeOpacity={0.7} onPressIn={() => router.push('/user')}>
 											<Image
 												source={require('@/assets/icon.png')}
 												style={{ width: 50, height: 50 }}

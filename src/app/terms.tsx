@@ -15,9 +15,9 @@ export default function TermsScreen() {
 						registration No. 17223631007, governing the use of the BIRT mobile application and the
 						Best in Rome Tour website. By accessing and using the App and Website, the User agrees
 						to these Terms and the Privacy Notice on the Best in Rome Tour website
-						<Link href={'https://bestinrometour.com/'} style={styles.contact}>
+						<Link href={'https://bestinrometours.com/'} style={styles.contact}>
 							{' '}
-							(www.bestinrometour.com)
+							(www.bestinrometours.com)
 						</Link>
 						.
 					</Text>

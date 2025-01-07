@@ -27,6 +27,7 @@ export default function UserScreen() {
 		await onLogout!()
 		await handleDeleteFiles()
 		await handleCancel()
+		router.back()
 	}
 
 	const fetchUserData = async () => {
