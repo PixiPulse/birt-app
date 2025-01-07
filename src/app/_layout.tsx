@@ -81,9 +81,9 @@ export default function App() {
 								name="index"
 								options={{
 									headerTitle: () => (
-										<Link href={'https://www.bestinrometours.com/'}>
+										<TouchableOpacity activeOpacity={0.8} onPressIn={() => router.navigate('https://www.bestinrometours.com/')}>
 											<Logo />
-										</Link>
+										</TouchableOpacity>
 									),
 								}}
 							/>
