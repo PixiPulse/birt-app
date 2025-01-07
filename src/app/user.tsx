@@ -9,7 +9,6 @@ import { colors, screenPadding } from '@/constants/token'
 import { fonts } from '@/styles'
 import Button from '@/components/user/Button'
 import { Image } from 'expo-image'
-import Document from '@/constants/icons/document'
 import Security from '@/constants/icons/security'
 import Docs from '@/constants/icons/docs'
 import axios from 'axios'
@@ -17,6 +16,7 @@ import { useQuery } from '@tanstack/react-query'
 import LoadingIndicator from '@/components/ui/LoadingIndicator'
 import ErrorScreen from '@/components/place/ErrorScreen'
 import EmptyScreen from '@/components/place/EmptyScreen'
+import { router } from 'expo-router'
 
 export default function UserScreen() {
 	const { onLogout } = useAuth()
@@ -79,10 +79,10 @@ export default function UserScreen() {
 					{ paddingHorizontal: screenPadding.horizontal, paddingTop: 50 },
 				]}
 			>
-				<Button title="Privacy Policy">
+				<Button title="Privacy Policy" onPress={() => router.push('/policy')}>
 					<Security fill={colors.primary} />
 				</Button>
-				<Button title="Terms & Conditions">
+				<Button title="Terms & Conditions" onPress={() => router.push('/terms')}>
 					<Docs fill={colors.primary} />
 				</Button>
 			</View>

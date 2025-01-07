@@ -93,11 +93,11 @@ export default function LoginForm() {
 					}}
 				>
 					By signin, you agree to our{' '}
-					<Link style={styles.link} href={'/'}>
+					<Link style={styles.link} href={'/terms'}>
 						Term of service
 					</Link>{' '}
 					and{' '}
-					<Link style={styles.link} href={'/'}>
+					<Link style={styles.link} href={'/policy'}>
 						Privacy policy
 					</Link>
 				</Text>

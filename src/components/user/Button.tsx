@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, TouchableOpacityProps} from "react-native";
 import React from "react";
 import { fonts } from "@/styles";
 import { colors } from "@/constants/token";
@@ -6,12 +6,12 @@ import { colors } from "@/constants/token";
 export default function Button({
   title,
   children,
+  ...props
 }: {
   title: string;
-  children: React.ReactNode;
-}) {
+} & TouchableOpacityProps) {
   return (
-    <TouchableOpacity style={styles.container} activeOpacity={0.7}>
+    <TouchableOpacity style={styles.container} activeOpacity={0.7} {...props}>
       {children}
       <Text style={[styles.text, fonts.normal]}>{title}</Text>
     </TouchableOpacity>

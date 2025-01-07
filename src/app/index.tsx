@@ -56,6 +56,7 @@ export default function HomeScreen() {
 	)
 }
 
+
 const styles = StyleSheet.create({
 	title: {
 		fontSize: fontSize.lg,

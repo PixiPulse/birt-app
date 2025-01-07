@@ -45,7 +45,6 @@ export default function PlaylistScreen() {
 
 	return (
 		<View style={{ flex: 1, backgroundColor: colors.background }}>
-			<Text>{JSON.stringify(data)}</Text>
 			<SectionList
 				sections={[
 					{
