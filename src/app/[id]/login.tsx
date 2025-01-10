@@ -24,7 +24,7 @@ export default function LoginScreen() {
 				style={{ width: '150%', height: '150%', position: 'absolute', opacity: 0.15 }}
 				source={require('@/assets/bg-login.jpg')}
 			></ImageBackground>
-			<TouchableOpacity activeOpacity={0.7} style={{ padding: 10 }} onPress={() => router.back()}>
+			<TouchableOpacity activeOpacity={0.7} style={{ padding: 10, paddingVertical:15 }} onPress={() => router.back()}>
 				<Back fill={colors.background} />
 			</TouchableOpacity>
 			<Header />

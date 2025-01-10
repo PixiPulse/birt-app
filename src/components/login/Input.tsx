@@ -1,7 +1,7 @@
 import { StyleSheet, TextInput, View, TextInputProps } from "react-native";
 import React, { useState } from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { colors } from "@/constants/token";
+import { colors, fontSize } from "@/constants/token";
 
 type InputProps = TextInputProps & {
   iconName: "alternate-email" | "password" | undefined;
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     paddingLeft: 50,
-    fontSize: 16,
+    fontSize: fontSize.base,
     backgroundColor: colors.background,
     fontFamily: "Regular",
   },

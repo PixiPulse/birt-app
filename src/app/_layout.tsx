@@ -115,7 +115,7 @@ export default function App() {
 									title: 'Profile',
 								}}
 							/>
-							<Stack.Screen name="terms" options={{ title: 'Terms of Service' }} />
+							<Stack.Screen name="terms" options={{ title: 'Terms & Conditions' }} />
 							<Stack.Screen name="policy" options={{ title: 'Privacy Policy' }} />
 						</Stack>
 					</PlayerProvider>
