@@ -21,19 +21,20 @@ export function useDownloadFile() {
     url: string;
     fileName: string;
   }) => {
-    const downloadResumable = FileSystem.createDownloadResumable(
+    const downloadResumable = await FileSystem.createDownloadResumable(
       url,
       FileSystem.cacheDirectory + fileName,
       {},
       callback,
     );
+
     try {
-      const { uri } =
-        (await downloadResumable.downloadAsync()) as FileSystem.FileSystemDownloadResult;
+      const { uri } = (await downloadResumable.downloadAsync()) as FileSystem.FileSystemDownloadResult;
+      console.log(uri)
       setUri(uri);
       console.log("Finished downloading to ", uri);
     } catch (error) {
-      console.error(error);
+      console.error(JSON.stringify(error));
     }
   };
 

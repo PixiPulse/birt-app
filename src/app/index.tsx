@@ -46,7 +46,7 @@ export default function HomeScreen() {
 			keyExtractor={(item, index) => item.id + index}
 			renderItem={({ item }) => <Card {...item} />}
 			renderSectionHeader={({ section: { title } }) => (
-				<View>
+				<View style={{backgroundColor: colors.background}}>
 					<Text style={[fonts.normal, styles.subtitle]}>Hot Playlist</Text>
 					<Text style={[fonts.Bold, styles.title]}>{title}</Text>
 				</View>

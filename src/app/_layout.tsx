@@ -8,12 +8,8 @@ import { colors } from '@/constants/token'
 import { QueryClient, QueryClientProvider, focusManager } from '@tanstack/react-query'
 import {
 	AppStateStatus,
-	ImageBackground,
 	Platform,
-	StyleSheet,
-	Text,
 	TouchableOpacity,
-	View,
 } from 'react-native'
 import { useOnlineManager } from '@/hooks/useOnlineManager'
 import { useAppState } from '@/hooks/useAppState'
@@ -75,6 +71,7 @@ export default function App() {
 								headerTitleStyle: {
 									fontFamily: 'Bold',
 								},
+								headerBackTitleStyle: {fontFamily: "Bold"}
 							}}
 						>
 							<Stack.Screen

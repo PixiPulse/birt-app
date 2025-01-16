@@ -55,7 +55,7 @@ export default function PlaylistScreen() {
 				keyExtractor={(item, index) => item.id + index}
 				renderItem={({ item }) => <Card data={item} />}
 				renderSectionHeader={({ section: { title } }) => (
-					<View style={{ marginBottom: 20 }}>
+					<View style={{ paddingBottom: 20, backgroundColor: colors.background }}>
 						<Header data={data?.data[0]?.place} />
 						<View style={styles.title}>
 							<Audio fill={colors.primary} />
