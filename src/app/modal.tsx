@@ -1,5 +1,4 @@
 import { Platform, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient'
 import Entypo from '@expo/vector-icons/Entypo'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AntDesign from '@expo/vector-icons/AntDesign'
@@ -34,13 +33,7 @@ export default function Modal() {
 	if (currentTrack) {
 		return (
 			<SafeAreaView style={styles.container}>
-				{/* <LinearGradient
-					// Background Linear Gradient
-					colors={[colors.primary, colors.foreground]}
-					style={styles.background}
-				/> */}
 				<ImageBackground
-					
 					source={require('@/assets/bg-login.jpg')}
 					style={styles.background}
 				></ImageBackground>
@@ -141,7 +134,7 @@ const styles = StyleSheet.create({
 		right: 0,
 		top: 0,
 		height: '120%',
-		opacity: 0.15
+		opacity: 0.15,
 	},
 	topButtonsContainer: {
 		flexDirection: 'row',
@@ -155,7 +148,7 @@ const styles = StyleSheet.create({
 		width: '85%',
 		aspectRatio: 1,
 		borderRadius: 20,
-		elevation:10
+		elevation: 10,
 	},
 	descriptionContainer: {},
 	title: {

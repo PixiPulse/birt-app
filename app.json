@@ -8,11 +8,11 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "scheme": "birt",
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
+    // "splash": {
+    //   "image": "./assets/splash.png",
+    //   "resizeMode": "cover",
+    //   "backgroundColor": "#ffffff"
+    // },
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
@@ -35,7 +35,7 @@
         "android.permission.RECORD_AUDIO",
         "android.permission.MODIFY_AUDIO_SETTINGS"
       ],
-      "versionCode": 3
+      "versionCode": 4
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -51,6 +51,18 @@
           "android": {
             "usesCleartextTraffic": true
           }
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#232323",
+          "image": "./assets/splash-icon.png",
+          "dark": {
+            "image": "./assets/splash-icon.png",
+            "backgroundColor": "#000000"
+          },
+          "imageWidth": 200
         }
       ]
     ],

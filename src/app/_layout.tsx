@@ -77,6 +77,7 @@ export default function App() {
 							<Stack.Screen
 								name="index"
 								options={{
+									title: "Home",
 									headerTitle: () => (
 										<TouchableOpacity activeOpacity={0.8} onPressIn={() => router.navigate('https://www.bestinrometours.com/')}>
 											<Logo />
