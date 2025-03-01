@@ -1,5 +1,5 @@
-import { View, Text, SectionList, StyleSheet, RefreshControl, TouchableOpacity } from 'react-native'
-import React, { useEffect } from 'react'
+import { View, Text, SectionList, StyleSheet, RefreshControl } from 'react-native'
+import React from 'react'
 import { colors, fontSize, screenPadding } from '@/constants/token'
 import ErrorScreen from './ErrorScreen'
 import EmptyScreen from './EmptyScreen'
@@ -14,8 +14,7 @@ import Header from './Header'
 import Audio from '@/constants/icons/audio'
 import { fonts } from '@/styles'
 import FloatingPlayer from '../player/FloatingPlayer'
-import { router, useLocalSearchParams, useNavigation } from 'expo-router'
-import { Image } from 'expo-image'
+import { useLocalSearchParams } from 'expo-router'
 
 export default function PlaylistScreen() {
 	const { currentTrack } = usePlayerContext()

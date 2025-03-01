@@ -10,21 +10,12 @@ import { router } from 'expo-router'
 
 export default function LoginScreen() {
 	return (
-		<SafeAreaView
-			style={[
-				defaultStyles.container,
-				{
-					paddingHorizontal: screenPadding.horizontal,
-					backgroundColor: colors.primary,
-					paddingVertical: 10,
-				},
-			]}
-		>
+		<SafeAreaView style={[defaultStyles.container, styles.container]}>
 			<ImageBackground
 				style={{ width: '150%', height: '150%', position: 'absolute', opacity: 0.15 }}
 				source={require('@/assets/bg-login.jpg')}
 			></ImageBackground>
-			<TouchableOpacity activeOpacity={0.7} style={{ padding: 10, paddingVertical:15 }} onPress={() => router.back()}>
+			<TouchableOpacity activeOpacity={0.7} style={styles.button} onPress={() => router.back()}>
 				<Back fill={colors.background} />
 			</TouchableOpacity>
 			<Header />
@@ -33,4 +24,17 @@ export default function LoginScreen() {
 	)
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+	container: {
+		paddingHorizontal: screenPadding.horizontal,
+		backgroundColor: colors.primary,
+		paddingVertical: 10,
+	},
+	button: {
+		padding: 15,
+		marginRight: 'auto',
+		borderRadius: 30,
+		borderWidth: 1,
+		borderColor: colors.primary
+	},
+})

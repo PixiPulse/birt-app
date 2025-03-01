@@ -40,7 +40,7 @@ export default function Modal() {
 				{/* top buttons */}
 				<View style={styles.topButtonsContainer}>
 					<TouchableOpacity
-						style={{ backgroundColor: 'transparent' }}
+						style={{ backgroundColor: 'transparent', padding: 12 }}
 						onPress={() => router.back()}
 					>
 						<Entypo
@@ -51,7 +51,7 @@ export default function Modal() {
 					</TouchableOpacity>
 
 					<TouchableOpacity
-						style={{ backgroundColor: 'transparent' }}
+						style={{ backgroundColor: 'transparent',  padding: 12 }}
 						onPress={() => {
 							router.back()
 							handleCancel()
@@ -143,6 +143,8 @@ const styles = StyleSheet.create({
 	},
 	imageContainer: {
 		marginHorizontal: 'auto',
+		backgroundColor: colors.primaryForeground,
+		borderRadius: 20,
 	},
 	image: {
 		width: '85%',

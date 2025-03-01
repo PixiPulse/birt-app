@@ -15,11 +15,7 @@ export default function TermsScreen() {
 						registration No. 17223631007, governing the use of the BIRT mobile application and the
 						Best in Rome Tour website. By accessing and using the App and Website, the User agrees
 						to these Terms and the Privacy Notice on the Best in Rome Tour website
-						<Link href={'https://bestinrometours.com/'} style={styles.contact}>
-							{' '}
-							(www.bestinrometours.com)
-						</Link>
-						.
+						<Text style={styles.contact}> (www.bestinrometours.com)</Text>.
 					</Text>
 					<Text style={styles.para}>
 						The website allows users to purchase mobile travel guides for a selected city, either
@@ -127,9 +123,9 @@ export default function TermsScreen() {
 						reason, without prior notice, and to modify these Terms and Conditions at any time.
 					</Text>
 					<Text style={styles.title}>10. Contact information</Text>
-					<Text style={[styles.para, {marginBottom: 20}]}>
+					<Text style={[styles.para, { marginBottom: 20 }]}>
 						To express any comments or questions regarding the Terms and Conditions of Use, please
-						email <Text style={styles.contact}>contact@bestinrometour.com</Text>
+						email <Text style={styles.contact}>bestofrometour@gmail.com</Text>
 					</Text>
 				</View>
 			</Container>

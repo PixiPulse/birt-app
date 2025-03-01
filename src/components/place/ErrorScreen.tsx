@@ -6,6 +6,8 @@ import { useAuth } from '@/contexts/AuthContext'
 import { fonts } from '@/styles'
 import { useDownloadFile } from '@/hooks/useDownloadFile'
 import { usePlayerContext } from '@/contexts/PlayerContext'
+import Feather from '@expo/vector-icons/Feather'
+
 
 export default function ErrorScreen({ message }: { message: string }) {
 	const { onLogout } = useAuth()
@@ -33,6 +35,7 @@ export default function ErrorScreen({ message }: { message: string }) {
 						await handleCancel()
 					}}
 				>
+					<Feather name="log-out" size={16} color={colors.secondaryForeground} />
 					<Text
 						style={{ textAlign: 'center', color: colors.primaryForeground, fontFamily: 'Bold' }}
 					>
@@ -53,10 +56,12 @@ const styles = StyleSheet.create({
 		gap: 10,
 	},
 	button: {
-		marginHorizontal: 'auto',
-		width: '50%',
 		backgroundColor: colors.ring,
-		padding: 10,
-		borderRadius: 10,
+		borderRadius: 8,
+		paddingHorizontal: 20,
+		paddingVertical: 10,
+		flexDirection: 'row',
+		gap: 10,
+		alignItems: 'center',
 	},
 })

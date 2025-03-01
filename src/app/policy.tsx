@@ -91,23 +91,23 @@ export default function PolicyScreen() {
 						7. The Data controller pursuant to art. 24 of the GDPR is BEST of ROME TOUR with a
 						registered office in Via Borgo Vittorio 38, fiscal code and number of registration No.
 						17223631007. The Data controller can be contacted for any requests or reports at the
-						following contact details: <Text style={styles.contact}>contact@bestinrometour.com</Text>.
+						following contact details: <Text style={styles.contact}>bestofrometour@gmail.com</Text>.
 					</Text>
 					<Text style={styles.para}>
 						The Data controller has appointed a Data Protection Officer pursuant to sec. 37, 38 and
 						39 of the GDPR, which is domiciled for the position at the address Via Borgo Vittorio
-						38, and can be contacted at the email address <Text style={styles.contact}>contact@bestinrometour.com</Text> for any matter
+						38, and can be contacted at the email address <Text style={styles.contact}>bestofrometour@gmail.com</Text> for any matter
 						concerning the Data processing.
 					</Text>
 					<Text style={styles.para}>
-						By sending an email to <Text style={styles.contact}>contact@bestinrometour.com</Text> the Data subject can also exercise any
+						By sending an email to <Text style={styles.contact}>bestofrometour@gmail.com</Text> the Data subject can also exercise any
 						rights referred to under paragraph 6 of this Privacy Notice.
 					</Text>
 					<Text style={[styles.para, {marginBottom: 20}]}>
 						Footnote 1: tourism organizations, museums, hotels, venues, institutions, travel agents
 						and transport or tour operators. An updated list of the above-mentioned third parties is
 						available at the registered office of Best of Rome Tour and may be known simply by
-						sending a request at the email <Text style={styles.contact}>contact@bestinrometour.com</Text>.
+						sending a request at the email <Text style={styles.contact}>bestofrometour@gmail.com</Text>.
 					</Text>
 				</View>
 			</Container>
