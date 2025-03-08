@@ -10,6 +10,7 @@ import Play from '@/constants/icons/play'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import * as FileSystem from 'expo-file-system'
 import { usePlayerContext } from '@/contexts/PlayerContext'
+import { ASSET_URL } from '@/lib/data'
 
 export default function Card({ data }: { data: any }) {
 	const [downloadedUri, setdownloadedUri] = useState('')
@@ -51,7 +52,7 @@ export default function Card({ data }: { data: any }) {
 				} else {
 					if (downloadProgress > 0) return
 					handleDownloadFile({
-						url: data.fileUrl,
+						url: `${ASSET_URL}${data.fileUrl}`,
 						fileName: `${data?.place?.name}-${data?.language.name}.${data?.fileUrl.split('.').pop()}`,
 					})
 				}
@@ -59,7 +60,7 @@ export default function Card({ data }: { data: any }) {
 		>
 			{/* left */}
 			<View style={styles.leftContainer}>
-				<Image style={styles.image} source={data?.language?.imgUrl} />
+				<Image style={styles.image} source={`${ASSET_URL}${data?.language?.imgUrl}`} />
 				<Text style={[fonts.normal, { fontSize: fontSize.sm }]}>{data?.language?.name}</Text>
 			</View>
 

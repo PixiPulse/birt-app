@@ -1,13 +1,14 @@
 import { View, StyleSheet, Text, TouchableHighlight } from 'react-native'
 import React from 'react'
 import { Image, ImageBackground } from 'expo-image'
-import { colors, fontSize, screenPadding } from '@/constants/token'
+import { colors, fontSize } from '@/constants/token'
 import { fonts } from '@/styles'
 import { BlurView } from 'expo-blur'
 import Play from '@/constants/icons/play'
 import Map from '@/constants/icons/map'
 import { router } from 'expo-router'
 import {Platform} from 'react-native'
+import { ASSET_URL } from '@/lib/data'
 
 type CardProps = {
 	id: string
@@ -17,7 +18,7 @@ type CardProps = {
 
 export default function Card({ name, imgUrl, id }: CardProps) {
 	return (
-		<ImageBackground source={imgUrl} style={styles.container} transition={500} contentFit="cover">
+		<ImageBackground source={`${ASSET_URL}${imgUrl}`} style={styles.container} transition={500} contentFit="cover">
 			<View style={styles.buttonContainer}>
 				<TouchableHighlight style={styles.button} activeOpacity={0.7} onPress={() => router.push(`/${id}`)}>
 					<BlurView intensity={Platform.OS === "ios"? 50 : 90} tint='light' style={{ padding: 7 }}>

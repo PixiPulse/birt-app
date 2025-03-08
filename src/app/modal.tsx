@@ -11,6 +11,7 @@ import { colors } from '@/constants/token'
 import { fonts } from '@/styles'
 import Pause from '@/constants/icons/pause'
 import Play from '@/constants/icons/play'
+import { ASSET_URL } from '@/lib/data'
 
 export default function Modal() {
 	const {
@@ -64,7 +65,7 @@ export default function Modal() {
 				{/* album art */}
 				<View style={styles.imageContainer}>
 					<Image
-						source={currentTrack?.imgUrl[0]}
+						source={`${ASSET_URL}${currentTrack?.imgUrl[0]}`}
 						style={styles.image}
 						contentFit="cover"
 						transition={1000}

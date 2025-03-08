@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { Entypo } from '@expo/vector-icons'
 import { router } from 'expo-router'
 import { colors } from '@/constants/token'
 import { fonts } from '@/styles'
@@ -62,11 +61,6 @@ const styles = StyleSheet.create({
 	subtitle: {
 		fontSize: 14,
 		color: colors.primaryForeground,
-	},
-	image: {
-		width: 65,
-		height: 65,
-		objectFit: 'cover',
 	},
 	imageContainer: {
 		borderRadius: 10,
