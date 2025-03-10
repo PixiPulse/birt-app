@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Image } from 'expo-image'
 import { fonts } from '@/styles'
@@ -14,7 +14,7 @@ import { ASSET_URL } from '@/lib/data'
 
 export default function Card({ data }: { data: any }) {
 	const [downloadedUri, setdownloadedUri] = useState('')
-	const { setCurrentTrack } = usePlayerContext()
+	const { setCurrentTrack, currentTrack } = usePlayerContext()
 	const { handleDownloadFile, downloadProgress, uri } = useDownloadFile()
 
 	const getData = async () => {
@@ -39,22 +39,30 @@ export default function Card({ data }: { data: any }) {
 		console.log(downloadProgress)
 	}, [downloadProgress, uri])
 
+	const disabled = (downloadProgress > 0 && downloadProgress < 1) || currentTrack?.id === data.id
+
 	return (
 		<TouchableOpacity
 			activeOpacity={0.7}
-			disabled={downloadProgress > 0 && downloadProgress < 1}
-			style={styles.container}
+			disabled={disabled}
+			style={[styles.container, {...(disabled) && {backgroundColor: colors.muted}}]}
 			onPress={() => {
-				if (downloadedUri) {
-					let item = { ...data, uri: '' }
-					item.uri = downloadedUri
-					setCurrentTrack(item)
+				if (Platform.OS == 'android') {
+					if (downloadedUri) {
+						let item = { ...data, uri: '' }
+						item.uri = downloadedUri
+						setCurrentTrack(item)
+					} else {
+						if (downloadProgress > 0) return
+						handleDownloadFile({
+							url: `${ASSET_URL}${data.fileUrl}`,
+							fileName: `${data?.place?.name}-${data?.language.name}.${data?.fileUrl.split('.').pop()}`,
+						})
+					}
 				} else {
-					if (downloadProgress > 0) return
-					handleDownloadFile({
-						url: `${ASSET_URL}${data.fileUrl}`,
-						fileName: `${data?.place?.name}-${data?.language.name}.${data?.fileUrl.split('.').pop()}`,
-					})
+					let item = { ...data, uri: '' }
+					item.uri = ASSET_URL + data.fileUrl
+					setCurrentTrack(item)
 				}
 			}}
 		>
@@ -65,27 +73,35 @@ export default function Card({ data }: { data: any }) {
 			</View>
 
 			{/* right */}
-			<View>
-				{downloadedUri ? (
+			{Platform.OS == 'android' ? (
+				<View>
+					{downloadedUri ? (
+						<View style={styles.button}>
+							<Play fill={colors.primary} size="20" />
+						</View>
+					) : downloadProgress == 0 ? (
+						<View style={styles.button}>
+							<Download fill={colors.primary} size="20" />
+						</View>
+					) : (
+						<View style={styles.button}>
+							<AnimatedCircularProgress
+								size={20}
+								width={2}
+								fill={downloadProgress * 100}
+								tintColor={colors.primary}
+								backgroundColor={colors.background}
+							/>
+						</View>
+					)}
+				</View>
+			) : (
+				<View>
 					<View style={styles.button}>
 						<Play fill={colors.primary} size="20" />
 					</View>
-				) : downloadProgress == 0 ? (
-					<View style={styles.button}>
-						<Download fill={colors.primary} size="20" />
-					</View>
-				) : (
-					<View style={styles.button}>
-						<AnimatedCircularProgress
-							size={20}
-							width={2}
-							fill={downloadProgress * 100}
-							tintColor={colors.primary}
-							backgroundColor={colors.background}
-						/>
-					</View>
-				)}
-			</View>
+				</View>
+			)}
 		</TouchableOpacity>
 	)
 }

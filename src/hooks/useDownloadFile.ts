@@ -23,7 +23,7 @@ export function useDownloadFile() {
   }) => {
     const downloadResumable = await FileSystem.createDownloadResumable(
       url,
-      FileSystem.cacheDirectory + fileName,
+      FileSystem.documentDirectory + fileName,
       {},
       callback,
     );

@@ -92,9 +92,10 @@ export default function Modal() {
 						minimumValue={0}
 						maximumValue={1}
 						value={progress}
-						onValueChange={(value) => {
+						onSlidingComplete={(value) => {
 							handleSliderValue(value)
 						}}
+						
 						maximumTrackTintColor={colors.background}
 						minimumTrackTintColor={colors.primary}
 						thumbTintColor={colors.primary}

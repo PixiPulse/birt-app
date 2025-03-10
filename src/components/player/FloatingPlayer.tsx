@@ -10,29 +10,27 @@ import Play from '@/constants/icons/play'
 export default function FloatingPlayer() {
 	const { currentTrack, handlePlayPause, isPlaying } = usePlayerContext()
 
+	if (!currentTrack) return null
+
 	return (
 		<TouchableOpacity
 			style={[styles.container]}
 			activeOpacity={0.85}
 			onPress={() => router.push('/modal')}
 		>
-			{currentTrack && (
-				<>
-					<View style={styles.wrapper}>
-						<View>
-							<Text style={[fonts.Bold, styles.title]}>{currentTrack.place.name}</Text>
-							<Text style={[fonts.semibold, styles.subtitle]}>
-								{currentTrack?.language?.name ?? ''}
-							</Text>
-						</View>
-						<View style={styles.imageContainer}>
-							<TouchableOpacity style={styles.button} onPress={handlePlayPause}>
-								{isPlaying ? <Pause fill={colors.primary} /> : <Play fill={colors.primary}  />}
-							</TouchableOpacity>
-						</View>
-					</View>
-				</>
-			)}
+			<View style={styles.wrapper}>
+				<View>
+					<Text style={[fonts.Bold, styles.title]}>{currentTrack.place.name}</Text>
+					<Text style={[fonts.semibold, styles.subtitle]}>
+						{currentTrack?.language?.name ?? ''}
+					</Text>
+				</View>
+				<View style={styles.imageContainer}>
+					<TouchableOpacity style={styles.button} onPress={handlePlayPause}>
+						{isPlaying ? <Pause fill={colors.primary} /> : <Play fill={colors.primary} />}
+					</TouchableOpacity>
+				</View>
+			</View>
 		</TouchableOpacity>
 	)
 }
@@ -66,8 +64,8 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		overflow: 'hidden',
 	},
-  button: {
-    padding: 10,
-    backgroundColor: colors.muted
-  }
+	button: {
+		padding: 10,
+		backgroundColor: colors.muted,
+	},
 })

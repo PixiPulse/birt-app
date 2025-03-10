@@ -40,10 +40,10 @@ import {
       await Audio.setAudioModeAsync({
         allowsRecordingIOS: false,
         staysActiveInBackground: true,
-        interruptionModeIOS: InterruptionModeIOS.DuckOthers,
+        // interruptionModeIOS: InterruptionModeIOS.DuckOthers,
         playsInSilentModeIOS: true,
         shouldDuckAndroid: true,
-        interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
+        // interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
         playThroughEarpieceAndroid: false,
       });
     };
@@ -80,6 +80,7 @@ import {
           {
             shouldPlay: true,
             isLooping: false,
+            progressUpdateIntervalMillis: 1000
           },
           onPlaybackStatusUpdate,
         );
