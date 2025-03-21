@@ -16,14 +16,14 @@
 					"NSAllowsArbitraryLoads": true
 				}
 			},
-			"bundleIdentifier": "com.bestinrometours.birtguide"
+			"bundleIdentifier": "com.pixipulse.birt"
 		},
 		"android": {
 			"adaptiveIcon": {
 				"foregroundImage": "./assets/adaptive-icon.png",
 				"backgroundColor": "#ffffff"
 			},
-			"package": "com.bestinrometours.birtguide",
+			"package": "com.pixipulse.birt",
 			"blockedPermissions": ["android.permission.RECORD_AUDIO"],
 			"permissions": ["android.permission.MODIFY_AUDIO_SETTINGS"]
 		},

@@ -19,7 +19,7 @@ export default function Logo({ textColor }: { textColor?: string }) {
 				>
 					BIRT
 				</Text>
-				<Text style={{ fontSize: fontSize.xs, marginBottom: 3 }}>G u i d e</Text>
+				<Text style={[{ fontSize: fontSize.xs, marginBottom: 3 }, { color: textColor ? textColor : colors.foreground }]}>G u i d e</Text>
 			</View>
 		</View>
 	)

@@ -106,6 +106,13 @@ export default function App() {
 									headerShown: false,
 								}}
 							/>
+							<Stack.Screen
+								name="[id]/sign-up"
+								options={{
+									title: 'SignUp',
+									headerShown: false,
+								}}
+							/>
 							<Stack.Screen name="modal" options={{ headerShown: false, presentation: 'modal' }} />
 							<Stack.Screen
 								name="user"

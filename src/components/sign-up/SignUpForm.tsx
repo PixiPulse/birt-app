@@ -1,13 +1,14 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import CustomButton from '../buttons/CustomButton'
 import { Link, router, useLocalSearchParams } from 'expo-router'
-import { useAuth } from '@/contexts/AuthContext'
-import Input from './Input'
+import { API_URL, useAuth } from '@/contexts/AuthContext'
 import { fonts } from '@/styles'
 import { colors, fontSize, screenPadding } from '@/constants/token'
+import Input from '../login/Input'
+import axios from 'axios'
 
-export default function LoginForm() {
+export default function SignUpForm() {
 	const { id } = useLocalSearchParams()
 
 	const [email, setEmail] = useState('')
@@ -16,22 +17,28 @@ export default function LoginForm() {
 	const [errors, setErrors] = useState<any>(null)
 	const [error, setError] = useState('')
 
-	const { onLogin } = useAuth()
-
 	const handleSubmit = async () => {
 		setLoading(true)
-		const data = await onLogin!(email, password)
-		setLoading(false)
-		if (data.data) {
+
+		const response = await fetch(`http://167.172.59.31:5001/api/v1/sign-up`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ username: email, password: password, placeId: id }),
+		})
+
+		const data = await response.json()
+
+		if (response.ok) {
 			router.replace(`/${id}`)
+		} else if (data.errors) {
+			setErrors(data.errors)
+		} else {
+			setError('Something went wrong')
 		}
-		if (data?.message?.errors) {
-			setErrors(data.message.errors)
-			setError('')
-		} else if (data?.message?.error) {
-			setError(data.message.error || '')
-			setErrors(null)
-		}
+
+		setLoading(false)
 	}
 
 	return (
@@ -56,7 +63,7 @@ export default function LoginForm() {
 						onChangeText={setEmail}
 					/>
 					{errors?.username && (
-						<Text style={[fonts.normal, { color: colors.primary, fontSize: fontSize.xs }]}>
+						<Text style={[fonts.normal, { color: colors.primaryLight, fontSize: fontSize.xs }]}>
 							{errors.username[0]}
 						</Text>
 					)}
@@ -70,34 +77,18 @@ export default function LoginForm() {
 						onChangeText={setPassword}
 					/>
 					{errors?.username && (
-						<Text style={[fonts.normal, { color: colors.primary, fontSize: fontSize.xs }]}>
+						<Text style={[fonts.normal, { color: colors.primaryLight, fontSize: fontSize.xs }]}>
 							{errors['password'][0]}
 						</Text>
 					)}
 				</View>
 
 				<CustomButton
-					title={loading ? 'Loading...' : 'Login'}
+					style={{ borderColor: colors.accent, borderWidth: 1 }}
+					title={loading ? 'Loading...' : 'Sign up'}
 					disabled={loading}
 					onPress={handleSubmit}
 				/>
-
-				<View
-					style={{
-						alignItems: 'center',
-					}}
-				>
-					<Text
-						style={{ textAlign: 'center', fontSize: fontSize.sm, fontFamily: 'Regular', color: colors.secondaryForeground }}
-					>
-						If you don't have an accout,
-					</Text>
-					<TouchableOpacity activeOpacity={0.7} onPress={() => router.push(`/${id}/sign-up`)}>
-						<Text style={{ color: colors.primaryForeground, fontSize: fontSize.sm, fontFamily: 'Bold' }}>
-							Create an account
-						</Text>
-					</TouchableOpacity>
-				</View>
 			</View>
 
 			<View style={{ paddingHorizontal: screenPadding.horizontal, paddingTop: 40 }}>
