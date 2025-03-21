@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Feather from '@expo/vector-icons/Feather'
@@ -50,6 +50,32 @@ export default function UserScreen() {
 
 	if (!data) return <EmptyScreen />
 
+	const deleteAccount = async () => {
+		try {
+			await axios.delete(`${API_URL}/api/v1/user/${data.id}`)
+			return {
+				message: 'Successfull',
+			}
+		} catch (error) {
+			return { error: true, message: (error as any).response.data }
+		}
+	}
+
+	const showAlert = () => {
+		Alert.alert(
+		  "Warning",
+		  "Are you sure to delete your accout. This action can not be undone after confirmation.",
+		  [
+			{ text: "Cancel", style: "cancel" },
+			{ text: "OK", onPress: () => {
+				deleteAccount()
+				handleLogout()
+			} }
+		  ]
+		);
+	  };
+	  
+
 	return (
 		<SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
 			<View style={[styles.container]}>
@@ -60,7 +86,7 @@ export default function UserScreen() {
 					/>
 				</View>
 
-				<Text style={[fonts.Bold, styles.title]}>{data?.name}</Text>
+				<Text style={[fonts.Bold, styles.title]}>{data?.username}</Text>
 				<TouchableOpacity
 					activeOpacity={0.7}
 					style={styles.button}
@@ -87,6 +113,16 @@ export default function UserScreen() {
 					<Docs fill={colors.primary} />
 				</Button>
 			</View>
+
+			{/* delete button */}
+			<TouchableOpacity
+				activeOpacity={0.7}
+				style={[styles.deleteButton]}
+				onPress={showAlert}
+			>
+				<Feather name="trash" size={16} color={colors.secondaryForeground} />
+				<Text style={[styles.buttonText, fonts.normal]}>Delete account</Text>
+			</TouchableOpacity>
 		</SafeAreaView>
 	)
 }
@@ -105,6 +141,16 @@ const styles = StyleSheet.create({
 		borderRadius: 8,
 		paddingHorizontal: 20,
 		paddingVertical: 10,
+		flexDirection: 'row',
+		gap: 10,
+		alignItems: 'center',
+	},
+	deleteButton: {
+		backgroundColor: colors.ring,
+		borderTopEndRadius: 8,
+		borderTopStartRadius: 8,
+		paddingHorizontal: 20,
+		paddingVertical: 20,
 		flexDirection: 'row',
 		gap: 10,
 		alignItems: 'center',
